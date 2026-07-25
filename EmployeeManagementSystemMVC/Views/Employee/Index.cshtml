@@ -4,109 +4,373 @@
     ViewData["Title"] = "Employees";
 }
 
+<style>
 
-<div class="container mt-4">
+    /* =========================================
+           EMPLOYEE PAGE
+        ========================================= */
 
-    <div class="d-flex justify-content-between mb-3">
-
-        <h2>
-            Employee List
-        </h2>
-
-
-        <a asp-action="Create"
-           class="btn btn-success">
-
-            <i class="bi bi-person-plus"></i>
-            Add Employee
-
-        </a>
-
-    </div>
+    .employee-list-page {
+        min-height: 100vh;
+        padding: 30px 15px;
+        background: linear-gradient(135deg, #f5f7fa, #e4e8f0);
+        animation: pageFadeIn 0.7s ease-in-out;
+    }
 
 
+    /* =========================================
+           PAGE HEADER
+        ========================================= */
 
-    <table class="table table-bordered table-striped">
+    .employee-header {
+        animation: headerSlideDown 0.7s ease-out;
+    }
 
-
-        <thead class="table-dark">
-
-            <tr>
-
-                <th>ID</th>
-
-                <th>Name</th>
-
-                <th>Email</th>
-
-                <th>Department</th>
-
-                <th>Salary</th>
-
-                <th>Action</th>
-
-            </tr>
-
-        </thead>
+        .employee-header h2 {
+            font-weight: 700;
+            color: #212529;
+        }
 
 
+    /* =========================================
+           ADD EMPLOYEE BUTTON
+        ========================================= */
 
-        <tbody>
+    .add-employee-btn {
+        transition: all 0.3s ease;
+    }
 
-
-            @foreach (var emp in Model)
-            {
-
-                <tr>
-
-                    <td>@emp.Id</td>
-
-                    <td>@emp.Name</td>
-
-                    <td>@emp.Email</td>
-
-                    <td>@emp.Department</td>
-
-                    <td>@emp.Salary</td>
+        .add-employee-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(25, 135, 84, 0.3);
+        }
 
 
-                    <td>
+    /* =========================================
+           TABLE CARD
+        ========================================= */
+
+    .employee-table-card {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        animation: tableSlideUp 0.8s ease-out;
+    }
 
 
-                        <a asp-action="Edit"
-                           asp-route-id="@emp.Id"
-                           class="btn btn-warning btn-sm">
+    /* =========================================
+           TABLE
+        ========================================= */
 
-                            <i class="bi bi-pencil"></i>
-                            Edit
+    .employee-table {
+        margin-bottom: 0;
+    }
 
-                        </a>
+        .employee-table thead th {
+            padding: 14px;
+            white-space: nowrap;
+        }
 
+        .employee-table tbody td {
+            padding: 14px;
+            vertical-align: middle;
+        }
 
+        .employee-table tbody tr {
+            transition: all 0.3s ease;
+        }
 
-                        <a asp-action="Delete"
-                           asp-route-id="@emp.Id"
-                           onclick="return confirm('Delete this employee?');"
-                           class="btn btn-danger btn-sm">
-
-                            <i class="bi bi-trash"></i>
-                            Delete
-
-                        </a>
-
-
-                    </td>
-
-
-                </tr>
-
+            .employee-table tbody tr:hover {
+                transform: scale(1.01);
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
             }
 
 
-        </tbody>
+    /* =========================================
+           ACTION BUTTONS
+        ========================================= */
+
+    .action-btn {
+        transition: all 0.3s ease;
+    }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .action-btn:active {
+            transform: scale(0.95);
+        }
 
 
-    </table>
+    /* =========================================
+           ANIMATIONS
+        ========================================= */
 
+    @@keyframes pageFadeIn {
+
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+
+    @@keyframes headerSlideDown {
+
+        from {
+            opacity: 0;
+            transform: translateY(-25px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+
+    @@keyframes tableSlideUp {
+
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+
+    /* =========================================
+           MOBILE RESPONSIVE
+        ========================================= */
+
+    @@media (max-width: 768px) {
+
+        .employee-list-page {
+            padding: 20px 10px;
+        }
+
+        .employee-header {
+            flex-direction: column;
+            align-items: stretch !important;
+            gap: 15px;
+        }
+
+            .employee-header h2 {
+                font-size: 25px;
+                margin-bottom: 0;
+            }
+
+        .add-employee-btn {
+            width: 100%;
+        }
+        /* Enable horizontal scrolling */
+
+        .employee-table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .employee-table {
+            min-width: 800px;
+        }
+    }
+
+
+    /* =========================================
+           SMALL MOBILE
+        ========================================= */
+
+    @@media (max-width: 576px) {
+
+        .employee-list-page {
+            padding: 15px 8px;
+        }
+
+        .employee-header h2 {
+            font-size: 22px;
+        }
+
+        .employee-table-card {
+            border-radius: 10px;
+        }
+
+        .employee-table thead th,
+        .employee-table tbody td {
+            padding: 10px;
+            font-size: 14px;
+        }
+    }
+
+
+    /* =========================================
+           REDUCE MOTION
+        ========================================= */
+
+    @@media (prefers-reduced-motion: reduce) {
+
+        .employee-list-page,
+        .employee-header,
+        .employee-table-card,
+        .employee-table tbody tr,
+        .add-employee-btn,
+        .action-btn {
+            animation: none !important;
+            transition: none !important;
+        }
+    }
+
+</style>
+
+
+<!-- =========================================
+     EMPLOYEE LIST PAGE
+========================================= -->
+
+<div class="container-fluid employee-list-page">
+
+    <div class="container">
+
+
+        <!-- =========================================
+             HEADER
+        ========================================= -->
+
+        <div class="d-flex justify-content-between align-items-center mb-4 employee-header">
+
+            <h2>
+                Employee List
+            </h2>
+
+
+            <a asp-action="Create"
+               class="btn btn-success add-employee-btn">
+
+                <i class="bi bi-person-plus"></i>
+                Add Employee
+
+            </a>
+
+        </div>
+
+
+        <!-- =========================================
+             EMPLOYEE TABLE
+        ========================================= -->
+
+        <div class="card shadow employee-table-card">
+
+            <div class="card-body p-0">
+
+                <!--
+                    Horizontal scrolling on mobile
+                -->
+
+                <div class="employee-table-wrapper">
+
+                    <table class="table table-bordered table-striped employee-table">
+
+
+                        <!-- TABLE HEADER -->
+
+                        <thead class="table-dark">
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Name</th>
+
+                                <th>Email</th>
+
+                                <th>Department</th>
+
+                                <th>Salary</th>
+
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <!-- TABLE BODY -->
+
+                        <tbody>
+
+                            @foreach (var emp in Model)
+                            {
+
+                                <tr>
+
+                                    <td>
+                                        @emp.Id
+                                    </td>
+
+                                    <td>
+                                        @emp.Name
+                                    </td>
+
+                                    <td>
+                                        @emp.Email
+                                    </td>
+
+                                    <td>
+                                        @emp.Department
+                                    </td>
+
+                                    <td>
+                                        @emp.Salary
+                                    </td>
+
+
+                                    <!-- ACTION -->
+
+                                    <td class="text-nowrap">
+
+                                        <a asp-action="Edit"
+                                           asp-route-id="@emp.Id"
+                                           class="btn btn-warning btn-sm action-btn">
+
+                                            <i class="bi bi-pencil"></i>
+                                            Edit
+
+                                        </a>
+
+
+                                        <a asp-action="Delete"
+                                           asp-route-id="@emp.Id"
+                                           onclick="return confirm('Delete this employee?');"
+                                           class="btn btn-danger btn-sm action-btn">
+
+                                            <i class="bi bi-trash"></i>
+                                            Delete
+
+                                        </a>
+
+                                    </td>
+
+                                </tr>
+
+                            }
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
