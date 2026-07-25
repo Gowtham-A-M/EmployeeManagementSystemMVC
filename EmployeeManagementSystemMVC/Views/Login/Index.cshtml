@@ -4,64 +4,465 @@
     ViewData["Title"] = "Login";
 }
 
+<style>
 
-<div class="container mt-5">
+    /* =========================================
+           LOGIN PAGE
+        ========================================= */
 
-    <div class="card mx-auto p-4 shadow"
-         style="width:400px">
+    .login-page {
+        min-height: 100vh;
+        width: 100%;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 15px;
+    }
 
 
-        <h2 class="text-center">
-            Login
-        </h2>
+    /* =========================================
+           LOGIN CARD
+        ========================================= */
+
+    .login-card {
+        width: 100%;
+        border: none;
+        border-radius: 20px;
+        overflow: hidden;
+        animation: loginCardAnimation 0.8s ease-out;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
 
-        <form method="post">
+        /* Card hover */
+
+        .login-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+        }
 
 
-            <div class="mb-3">
+    /* =========================================
+           CARD BODY
+        ========================================= */
 
-                <label>
-                    Username
-                </label>
+    .login-card-body {
+        padding: 40px;
+        background-color: #ffffff;
+    }
 
-                <input asp-for="Username"
-                       class="form-control" />
+
+    /* =========================================
+           LOGIN HEADER
+        ========================================= */
+
+    .login-header {
+        text-align: center;
+        margin-bottom: 30px;
+        animation: fadeInAnimation 1s ease-in;
+    }
+
+
+        .login-header h2 {
+            font-size: 30px;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 10px;
+        }
+
+
+        .login-header p {
+            color: #6c757d;
+            margin-bottom: 0;
+        }
+
+
+    /* =========================================
+           FORM GROUP
+        ========================================= */
+
+    .login-form-group {
+        margin-bottom: 20px;
+    }
+
+
+        .login-form-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #212529;
+        }
+
+
+    /* =========================================
+           INPUT
+        ========================================= */
+
+    .login-input {
+        height: 50px;
+        border-radius: 10px;
+        border: 1px solid #ced4da;
+        padding: 10px 15px;
+        font-size: 16px;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+
+        .login-input:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15);
+            transform: scale(1.01);
+        }
+
+
+    /* =========================================
+           VALIDATION MESSAGE
+        ========================================= */
+
+    .field-validation-error {
+        display: block;
+        margin-top: 5px;
+        font-size: 14px;
+    }
+
+
+    /* =========================================
+           ERROR ALERT
+        ========================================= */
+
+    .login-error {
+        animation: errorAnimation 0.5s ease-out;
+        border-radius: 10px;
+    }
+
+
+    /* =========================================
+           LOGIN BUTTON
+        ========================================= */
+
+    .login-button {
+        height: 50px;
+        border-radius: 10px;
+        font-size: 17px;
+        font-weight: 600;
+        border: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+
+
+        .login-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(13, 110, 253, 0.30);
+        }
+
+
+        .login-button:active {
+            transform: scale(0.97);
+        }
+
+
+    /* =========================================
+           ANIMATIONS
+        ========================================= */
+
+    @@keyframes loginCardAnimation {
+
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+
+    @@keyframes fadeInAnimation {
+
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+
+    @@keyframes errorAnimation {
+
+        0% {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+
+    /* =========================================
+           MOBILE RESPONSIVE
+        ========================================= */
+
+    @@media (max-width: 576px) {
+
+        .login-page {
+            min-height: 100vh;
+            padding: 20px 15px;
+        }
+
+
+        .login-card {
+            border-radius: 15px;
+        }
+
+
+        .login-card-body {
+            padding: 30px 20px;
+        }
+
+
+        .login-header h2 {
+            font-size: 26px;
+        }
+
+
+        .login-header p {
+            font-size: 14px;
+        }
+
+
+        .login-input {
+            height: 48px;
+            font-size: 16px;
+        }
+
+
+        .login-button {
+            height: 48px;
+            font-size: 16px;
+        }
+    }
+
+
+    /* =========================================
+           SMALL MOBILE
+        ========================================= */
+
+    @@media (max-width: 360px) {
+
+        .login-page {
+            padding: 15px 10px;
+        }
+
+
+        .login-card-body {
+            padding: 25px 15px;
+        }
+
+
+        .login-header h2 {
+            font-size: 24px;
+        }
+    }
+
+
+    /* =========================================
+           REDUCE ANIMATION IF USER PREFERS
+        ========================================= */
+
+    @@media (prefers-reduced-motion: reduce) {
+
+        .login-card,
+        .login-header,
+        .login-error,
+        .login-input,
+        .login-button {
+            animation: none !important;
+            transition: none !important;
+        }
+    }
+
+</style>
+
+
+<!-- =========================================
+     LOGIN PAGE
+========================================= -->
+
+<div class="login-page">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <!--
+                Bootstrap responsive columns
+
+                Mobile       : 12 columns
+                Small        : 10 columns
+                Medium       : 7 columns
+                Large        : 5 columns
+                Extra Large  : 4 columns
+            -->
+
+            <div class="col-12 col-sm-10 col-md-7 col-lg-5 col-xl-4">
+
+
+                <!-- =========================================
+                     LOGIN CARD
+                ========================================= -->
+
+                <div class="card login-card shadow-lg">
+
+
+                    <div class="login-card-body">
+
+
+                        <!-- =========================================
+                             LOGIN HEADER
+                        ========================================= -->
+
+                        <div class="login-header">
+
+                            <h2>
+                                Welcome Back
+                            </h2>
+
+                            <p>
+                                Please login to your account
+                            </p>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             LOGIN FORM
+                        ========================================= -->
+
+                        <form asp-action="Login"
+                              asp-controller="Account"
+                              method="post">
+
+
+                            <!-- =========================================
+                                 USERNAME
+                            ========================================= -->
+
+                            <div class="login-form-group">
+
+                                <label asp-for="Username"
+                                       class="form-label">
+
+                                    Username
+
+                                </label>
+
+
+                                <input asp-for="Username"
+                                       class="form-control login-input"
+                                       placeholder="Enter your username"
+                                       autocomplete="username" />
+
+
+                                <span asp-validation-for="Username"
+                                      class="text-danger">
+
+                                </span>
+
+                            </div>
+
+
+                            <!-- =========================================
+                                 PASSWORD
+                            ========================================= -->
+
+                            <div class="login-form-group">
+
+                                <label asp-for="Password"
+                                       class="form-label">
+
+                                    Password
+
+                                </label>
+
+
+                                <input asp-for="Password"
+                                       type="password"
+                                       class="form-control login-input"
+                                       placeholder="Enter your password"
+                                       autocomplete="current-password" />
+
+
+                                <span asp-validation-for="Password"
+                                      class="text-danger">
+
+                                </span>
+
+                            </div>
+
+
+                            <!-- =========================================
+                                 ERROR MESSAGE
+                            ========================================= -->
+                            @if (ViewBag.Error != null)
+                            {
+
+                                <div class="alert alert-danger login-error"
+                                     role="alert">
+
+                                    @ViewBag.Error
+
+                                </div>
+
+                            }
+
+
+                            <!-- =========================================
+                                 LOGIN BUTTON
+                            ========================================= -->
+
+                            <div class="d-grid mt-4">
+
+                                <button type="submit"
+                                        class="btn btn-primary login-button">
+
+                                    Login
+
+                                </button>
+
+                            </div>
+
+
+                        </form>
+
+
+                    </div>
+
+                </div>
+
 
             </div>
 
-
-            <div class="mb-3">
-
-                <label>
-                    Password
-                </label>
-
-                <input asp-for="Password"
-                       type="password"
-                       class="form-control" />
-
-            </div>
-
-
-            @if (ViewBag.Error != null)
-            {
-                <p class="text-danger">
-                    @ViewBag.Error
-                </p>
-            }
-
-
-            <button class="btn btn-primary w-100">
-
-                Login
-
-            </button>
-
-
-        </form>
-
+        </div>
 
     </div>
 
 </div>
+
+
+<!-- =========================================
+     VALIDATION SCRIPTS
+========================================= -->
+@section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}
