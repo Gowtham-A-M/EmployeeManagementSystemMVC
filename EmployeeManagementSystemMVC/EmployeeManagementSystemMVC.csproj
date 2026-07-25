@@ -1,18 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="ClosedXML" Version="0.105.0" />
-    <PackageReference Include="MySql.Data" Version="9.7.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="ClosedXML" Version="0.105.0" />
+		<PackageReference Include="MySql.Data" Version="9.7.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\NewFolder\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Views\NewFolder\" />
+	</ItemGroup>
 
 </Project>
