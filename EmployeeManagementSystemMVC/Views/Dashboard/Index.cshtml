@@ -1,0 +1,264 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+    body {
+        background: #f4f7fc;
+    }
+
+    .navbar {
+        background: linear-gradient(90deg,#0d6efd,#6610f2);
+    }
+
+    .dashboard-card {
+        border: none;
+        border-radius: 20px;
+        transition: .3s;
+        overflow: hidden;
+    }
+
+        .dashboard-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,.2);
+        }
+
+    .icon-circle {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 38px;
+        color: white;
+        margin: auto;
+    }
+
+    .stat-card {
+        border: none;
+        border-radius: 15px;
+        color: white;
+    }
+
+    .footer {
+        background: white;
+        border-top: 1px solid #ddd;
+        padding: 15px;
+        margin-top: 50px;
+        text-align: center;
+    }
+</style>
+
+<!-- Navbar -->
+
+<nav class="navbar navbar-expand-lg navbar-dark shadow">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="#">
+            <i class="bi bi-building"></i>
+            Employee Management System
+        </a>
+
+        <span class="text-white fw-bold">
+            <i class="bi bi-person-circle"></i>
+            Welcome @ViewBag.Admin
+        </span>
+
+    </div>
+
+</nav>
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h2 class="fw-bold">Dashboard</h2>
+
+        <p class="text-muted">
+            Manage your employees efficiently
+        </p>
+
+    </div>
+
+    <!-- Statistics -->
+
+    <div class="row mb-5">
+
+        <div class="col-md-4 mb-3">
+
+            <div class="card stat-card bg-primary shadow">
+
+                <div class="card-body">
+
+                    <h6>Total Employees</h6>
+
+                    <h2>@ViewBag.TotalEmployees</h2>
+
+                    <i class="bi bi-people-fill fs-1 float-end opacity-50"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 mb-3">
+
+            <div class="card stat-card bg-success shadow">
+
+                <div class="card-body">
+
+                    <h6>Total Reports</h6>
+
+                    <h2>@ViewBag.TotalReports</h2>
+
+                    <i class="bi bi-file-earmark-bar-graph fs-1 float-end opacity-50"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 mb-3">
+
+            <div class="card stat-card bg-danger shadow">
+
+                <div class="card-body">
+
+                    <h6>Today's Login</h6>
+
+                    <h2>@ViewBag.TodayLogin</h2>
+
+                    <i class="bi bi-person-check-fill fs-1 float-end opacity-50"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Menu Cards -->
+
+    <div class="row g-4">
+
+        <div class="col-lg-4">
+
+            <div class="card dashboard-card shadow">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="icon-circle bg-primary">
+
+                        <i class="bi bi-people-fill"></i>
+
+                    </div>
+
+                    <h4 class="mt-4">Employees</h4>
+
+                    <p class="text-muted">
+                        Create, Update, Delete employee details.
+                    </p>
+
+                    <a asp-controller="Employee"
+                       asp-action="Index"
+                       class="btn btn-primary w-100 rounded-pill">
+
+                        <i class="bi bi-arrow-right-circle"></i>
+
+                        Manage Employees
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="card dashboard-card shadow">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="icon-circle bg-success">
+
+                        <i class="bi bi-file-earmark-excel"></i>
+
+                    </div>
+
+                    <h4 class="mt-4">Reports</h4>
+
+                    <p class="text-muted">
+                        Download employee report in Excel.
+                    </p>
+
+                    <a asp-controller="Report"
+                       asp-action="EmployeeReport"
+                       class="btn btn-success w-100 rounded-pill">
+
+                        <i class="bi bi-download"></i>
+
+                        Download Report
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="card dashboard-card shadow">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="icon-circle bg-danger">
+
+                        <i class="bi bi-box-arrow-right"></i>
+
+                    </div>
+
+                    <h4 class="mt-4">Logout</h4>
+
+                    <p class="text-muted">
+                        Securely sign out from your account.
+                    </p>
+
+                    <a asp-controller="Login"
+                       asp-action="Logout"
+                       class="btn btn-danger w-100 rounded-pill">
+
+                        <i class="bi bi-power"></i>
+
+                        Logout
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+
+    © @DateTime.Now.Year Employee Management System | Developed using ASP.NET Core MVC & Bootstrap 5
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

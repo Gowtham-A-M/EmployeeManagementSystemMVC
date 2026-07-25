@@ -1,0 +1,67 @@
+﻿@model EmployeeManagementSystemMVC.Models.Login
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<div class="container mt-5">
+
+    <div class="card mx-auto p-4 shadow"
+         style="width:400px">
+
+
+        <h2 class="text-center">
+            Login
+        </h2>
+
+
+        <form method="post">
+
+
+            <div class="mb-3">
+
+                <label>
+                    Username
+                </label>
+
+                <input asp-for="Username"
+                       class="form-control" />
+
+            </div>
+
+
+            <div class="mb-3">
+
+                <label>
+                    Password
+                </label>
+
+                <input asp-for="Password"
+                       type="password"
+                       class="form-control" />
+
+            </div>
+
+
+            @if (ViewBag.Error != null)
+            {
+                <p class="text-danger">
+                    @ViewBag.Error
+                </p>
+            }
+
+
+            <button class="btn btn-primary w-100">
+
+                Login
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+</div>

@@ -1,0 +1,112 @@
+﻿@model List<EmployeeManagementSystemMVC.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employees";
+}
+
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between mb-3">
+
+        <h2>
+            Employee List
+        </h2>
+
+
+        <a asp-action="Create"
+           class="btn btn-success">
+
+            <i class="bi bi-person-plus"></i>
+            Add Employee
+
+        </a>
+
+    </div>
+
+
+
+    <table class="table table-bordered table-striped">
+
+
+        <thead class="table-dark">
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Name</th>
+
+                <th>Email</th>
+
+                <th>Department</th>
+
+                <th>Salary</th>
+
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+
+
+        <tbody>
+
+
+            @foreach (var emp in Model)
+            {
+
+                <tr>
+
+                    <td>@emp.Id</td>
+
+                    <td>@emp.Name</td>
+
+                    <td>@emp.Email</td>
+
+                    <td>@emp.Department</td>
+
+                    <td>@emp.Salary</td>
+
+
+                    <td>
+
+
+                        <a asp-action="Edit"
+                           asp-route-id="@emp.Id"
+                           class="btn btn-warning btn-sm">
+
+                            <i class="bi bi-pencil"></i>
+                            Edit
+
+                        </a>
+
+
+
+                        <a asp-action="Delete"
+                           asp-route-id="@emp.Id"
+                           onclick="return confirm('Delete this employee?');"
+                           class="btn btn-danger btn-sm">
+
+                            <i class="bi bi-trash"></i>
+                            Delete
+
+                        </a>
+
+
+                    </td>
+
+
+                </tr>
+
+            }
+
+
+        </tbody>
+
+
+    </table>
+
+
+</div>
