@@ -3,8 +3,12 @@ WORKDIR /src
 
 COPY . .
 
-RUN dotnet restore "./EmployeeManagementSystemMVC.csproj"
-RUN dotnet publish "./EmployeeManagementSystemMVC.csproj" -c Release -o /app/publish --no-restore
+RUN dotnet restore "EmployeeManagementSystemMVC/EmployeeManagementSystemMVC.csproj"
+
+RUN dotnet publish "EmployeeManagementSystemMVC/EmployeeManagementSystemMVC.csproj" \
+    -c Release \
+    -o /app/publish \
+    --no-restore
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
 WORKDIR /app
